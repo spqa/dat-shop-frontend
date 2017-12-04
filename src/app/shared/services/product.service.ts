@@ -33,7 +33,7 @@ export class ProductService {
   }
 
   destroy(product: Product): Observable<ResultMessage> {
-    return this.http.delete<ResultMessage>(this.EP + "/product" + "/" + product.id);
+    return this.http.delete<ResultMessage>(this.EP + "/product" + "/" + product.ProID);
   }
 
   getProduct(id: string): Observable<Product> {
