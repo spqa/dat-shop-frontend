@@ -5,6 +5,7 @@ import {Product, ProductList} from "../models/product";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {ResultMessage} from "../models/result-message";
+import {WarehouseList} from "../models/warehouse";
 
 @Injectable()
 export class ProductService {
@@ -42,6 +43,10 @@ export class ProductService {
 
   update(product: Product): Observable<ResultMessage> {
     return this.http.put<ResultMessage>(this.EP + "/product/" + product.ProID, product);
+  }
+
+  getWarehouse(): Observable<WarehouseList> {
+    return this.http.get<WarehouseList>(this.EP + "/warehouse");
   }
 
 }

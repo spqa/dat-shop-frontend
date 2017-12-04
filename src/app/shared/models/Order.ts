@@ -1,11 +1,13 @@
 import {OrderDetail} from "./order-detail";
+import {Customer} from "./customer";
 
 export class Order {
-  OrderOutID: string;
+  OrdOutID: string;
   CusID: string;
   DateOut: string;
   Status: string;
   OrderDetail: OrderDetail[];
+  customer: Customer;
 }
 
 export interface OrderList {

@@ -14,6 +14,7 @@ import {AdminCustomerComponent} from './admin-customer/admin-customer.component'
 import {AdminAccountSettingComponent} from './admin-account-setting/admin-account-setting.component';
 import {UploadService} from "../shared/services/upload.service";
 import {AdminOrderDetailComponent} from './admin-order-detail/admin-order-detail.component';
+import {AdminWarehouseComponent} from './admin-warehouse/admin-warehouse.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
       {path: 'order/:id/order-detail', component: AdminOrderDetailComponent},
       {path: 'account', component: AdminAccountSettingComponent},
       {path: 'customer', component: AdminCustomerComponent},
+      {path: 'warehouse', component: AdminWarehouseComponent},
     ]
   }
 ];
@@ -52,7 +54,8 @@ const routes: Routes = [
     AdminOrderComponent,
     AdminCustomerComponent,
     AdminAccountSettingComponent,
-    AdminOrderDetailComponent
+    AdminOrderDetailComponent,
+    AdminWarehouseComponent
   ],
   providers: [UploadService],
   exports: [RouterModule]

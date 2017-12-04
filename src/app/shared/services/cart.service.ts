@@ -5,6 +5,7 @@ import {ProductService} from "./product.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {Product} from "../models/product";
+import {Warehouse} from "../models/warehouse";
 
 @Injectable()
 export class CartService {
@@ -15,14 +16,16 @@ export class CartService {
     this.load();
   }
 
-  add(product: Product) {
+  add(warehouse: Warehouse) {
     const orders = this.orderDetail.getValue();
-    const index = _.findIndex(orders, {ProID: product.ProID});
+    const index = _.findIndex(orders, {ProID: warehouse.ProID, ParID: warehouse.ParID});
     if (index === -1) {
       const order = new OrderDetail();
-      order.ProID = product.ProID;
+      order.ProID = warehouse.ProID;
       order.Quantity = 1;
-      order.product = product;
+      order.ParID = warehouse.ParID;
+      order.product = warehouse.product;
+      order.parcel = warehouse.parcel;
       orders.push(order);
     } else {
       orders[index].Quantity++;
@@ -31,9 +34,9 @@ export class CartService {
     this.save();
   }
 
-  remove(product: Product) {
+  remove(warehouse: Warehouse) {
     const orders = this.orderDetail.getValue();
-    const index = _.findIndex(orders, {ProID: product.ProID});
+    const index = _.findIndex(orders, {ProID: warehouse.ProID, ParID: warehouse.ParID});
     if (index !== -1) {
       orders[index].Quantity--;
       if (orders[index].Quantity === 0) {

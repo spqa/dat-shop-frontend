@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {CartIndexComponent} from './cart-index/cart-index.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
+import {FormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     SharedModule
   ],

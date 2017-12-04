@@ -4,6 +4,7 @@ import {ProductDetailComponent} from './product-detail/product-detail.component'
 import {ProductIndexComponent} from './product-index/product-index.component';
 import {RouterModule, Routes} from "@angular/router";
 import {ProductCardComponent} from './product-card/product-card.component';
+import {ProductCateComponent} from './product-cate/product-cate.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'product/:id',
     component: ProductDetailComponent
+  },
+  {
+    path: 'category/:id',
+    component: ProductCateComponent
   }
 ];
 
@@ -22,7 +27,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProductDetailComponent, ProductIndexComponent, ProductCardComponent],
+  declarations: [ProductDetailComponent, ProductIndexComponent, ProductCardComponent, ProductCateComponent],
   exports: [
     RouterModule
   ]

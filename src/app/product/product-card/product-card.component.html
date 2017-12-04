@@ -1,21 +1,23 @@
 <div class="card">
-  <a [routerLink]="['/product',product.ProID]">
+  <a [routerLink]="['/product',warehouse.product.ProID]">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img [src]="product.Image?product.Image:'https://bulma.io/images/placeholders/1280x960.png'"
+        <img [src]="warehouse.product.Image?warehouse.product.Image:'https://bulma.io/images/placeholders/1280x960.png'"
              alt="Placeholder image">
       </figure>
     </div>
 
     <div class="card-content">
       <div class="content">
-        <h2 class="title">{{product.ProName}}</h2>
+        <h2 class="title">{{warehouse.product.ProName}}</h2>
+        <h3 class="subtitle">{{warehouse.parcel.Brand + " - " + warehouse.parcel.Color + " - " +
+          warehouse.parcel.Size}}</h3>
         <!--In stock: {{product.stock}}-->
       </div>
     </div>
 
-    <div *ngIf="product.PriceOut" class="hiring-price">
-      <span>{{product.PriceOut}}$</span>
+    <div *ngIf="warehouse.product.PriceOut" class="hiring-price">
+      <span>{{warehouse.product.PriceOut}}$</span>
     </div>
   </a>
   <footer class="card-footer">

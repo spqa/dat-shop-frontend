@@ -11,12 +11,18 @@ import {ActivatedRoute} from "@angular/router";
 export class AdminOrderDetailComponent implements OnInit {
 
   orders: OrderDetail[];
-
+  totalPrice: number;
   constructor(private orderService: OrderService,
               private route: ActivatedRoute) {
     this.route.paramMap
       .switchMap((params) => this.orderService.getOrderDetail(params.get("id")))
-      .subscribe((orders) => this.orders = orders);
+      .subscribe((orders) => {
+        this.orders = orders;
+        this.totalPrice = this.orders.reduce((sum, order) => {
+          sum += order.product.PriceOut * order.Quantity;
+          return sum;
+        }, 0);
+      });
   }
 
   ngOnInit() {

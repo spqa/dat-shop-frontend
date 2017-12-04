@@ -1,0 +1,60 @@
+<h1 class="title">Warehouse Management</h1>
+<hr>
+<!--<a routerLink="/admin/product/add" class="button">Add new product</a>-->
+<app-notification-error *ngIf="resultMessage" [result]="resultMessage"></app-notification-error>
+<table class="table is-fullwidth is-hoverable">
+  <thead>
+  <tr>
+    <th>Product ID</th>
+    <th>Image</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Brand</th>
+    <th>Color</th>
+    <th>Size</th>
+    <th>Price Out</th>
+    <th>Discount</th>
+    <th>Quantity</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="warehouses ">
+  <tr *ngFor="let item of warehouses.data">
+    <td>{{item.WareID}}</td>
+    <td>
+      <figure class="image is-4by3">
+        <img [src]="item.product.Image?item.product.Image:'http://via.placeholder.com/350x150'">
+      </figure>
+    </td>
+    <td>{{item.product.category.CatName}}</td>
+    <td>{{item.product.ProName}}</td>
+    <td>{{item.parcel.Brand}}</td>
+    <td>{{item.parcel.Color}}</td>
+    <td>{{item.parcel.Size}}</td>
+    <td>{{item.product.PriceOut}}</td>
+    <td>{{item.product.Discount}}</td>
+    <td>{{item.Quantity}}</td>
+  </tr>
+  </tbody>
+</table>
+<div class="field has-addons">
+  <p class="control">
+    <a (click)="prevPage()" class="button">
+      <span>Prev</span>
+    </a>
+  </p>
+  <p class="control">
+    <a class="button">
+      <span>Current {{warehouses?.current_page}}</span>
+    </a>
+  </p>
+  <p class="control">
+    <a (click)="nextPage()" class="button">
+      <span>Next</span>
+    </a>
+  </p>
+  <p class="control">
+    <a class="is-info button">
+      <span>{{warehouses?.last_page}}</span>
+    </a>
+  </p>
+</div>

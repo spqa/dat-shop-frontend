@@ -7,14 +7,22 @@
   <tr>
     <th>No</th>
     <th>Product Name</th>
+    <th>Product Brand</th>
+    <th>Product Color</th>
+    <th>Product Size</th>
     <th>Quantity</th>
   </tr>
   </thead>
   <tbody *ngIf="orders">
   <tr *ngFor="let order of orders; let i = index">
     <td>{{i + 1}}</td>
-    <td>{{order.product.name}}</td>
-    <td>{{order.quantity}}</td>
+    <td>{{order.product.ProName}}</td>
+    <td>{{order.parcel.Brand}}</td>
+    <td>{{order.parcel.Color}}</td>
+    <td>{{order.parcel.Size}}</td>
+    <td>{{order.Quantity}}</td>
   </tr>
   </tbody>
 </table>
+
+<h3 class="subtitle">Total price: {{totalPrice}}</h3>

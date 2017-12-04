@@ -5,7 +5,7 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs/Observable";
 import {ResultMessage} from "../models/result-message";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {OrderList} from "../models/Order";
+import {Order, OrderList} from "../models/Order";
 
 @Injectable()
 export class OrderService {
@@ -21,7 +21,7 @@ export class OrderService {
   }
 
   reload() {
-    this.http.get<OrderList>(this.EP + "/order").subscribe((orders) => {
+    this.http.get<OrderList>(this.EP + "/order-out").subscribe((orders) => {
       this.orderStream.next(orders);
     });
   }
@@ -39,6 +39,10 @@ export class OrderService {
   }
 
   getOrderDetail(id: string): Observable<OrderDetail[]> {
-    return this.http.get<OrderDetail[]>(this.EP + "/order/" + id + "/" + "order-detail");
+    return this.http.get<OrderDetail[]>(this.EP + "/order-out/" + id + "/" + "order-detail");
+  }
+
+  order(order: Order): Observable<ResultMessage> {
+    return this.http.post<ResultMessage>(this.EP + "/order-out", order);
   }
 }

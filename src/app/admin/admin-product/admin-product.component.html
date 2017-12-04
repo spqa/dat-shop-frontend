@@ -7,10 +7,11 @@
   <tr>
     <th>Product ID</th>
     <th>Image</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Discount</th>
     <th>Category</th>
+    <th>Name</th>
+    <th>Price In</th>
+    <th>Price Out</th>
+    <th>Discount</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -22,10 +23,11 @@
         <img [src]="product.Image?product.Image:'http://via.placeholder.com/350x150'">
       </figure>
     </td>
+    <td>{{product.category.CatName}}</td>
     <td>{{product.ProName}}</td>
+    <td>{{product.PriceIn}}</td>
     <td>{{product.PriceOut}}</td>
     <td>{{product.Discount}}</td>
-    <td>{{product.category.CatName}}</td>
     <td>
       <a class="button is-info" [routerLink]="['/admin/product',product.ProID]">Edit</a>
       <a class="button is-danger" (click)="deleteProduct(product.ProID)">Delete</a>

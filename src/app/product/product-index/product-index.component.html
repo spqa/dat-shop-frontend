@@ -14,9 +14,9 @@
 <section class="section">
   <div class="container">
     <h1 class="title">Product List</h1>
-    <div *ngIf="products | async" class="columns is-multiline ">
-      <div *ngFor="let product of (products | async).data" class="column is-3-desktop is-6-tablet">
-        <app-product-card [product]="product"></app-product-card>
+    <div *ngIf="warehouses" class="columns is-multiline ">
+      <div *ngFor="let warehouse of warehouses.data" class="column is-3-desktop is-6-tablet">
+        <app-product-card [warehouse]="warehouse"></app-product-card>
       </div>
     </div>
 

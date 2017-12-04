@@ -2,6 +2,25 @@
 <hr>
 <app-notification-error [result]="resultMessage"></app-notification-error>
 <form (submit)="submitProduct ()" #productForm="ngForm" enctype="multipart/form-data">
+  <div *ngIf="adding" class="field">
+    <label class="label">Product ID</label>
+    <div class="control">
+      <input #id="ngModel" class="input" [(ngModel)]="product.ProID" name="model" required>
+    </div>
+    <p *ngIf="!id.valid" class="help is-danger">ID is required</p>
+  </div>
+
+  <div class="field">
+    <label class="label">Product category</label>
+    <div class="control">
+      <div *ngIf="cateStream | async" class="select">
+        <select name="CatID" [(ngModel)]="product.CatID" required>
+          <option *ngFor="let cate of cateStream | async" value="{{cate.CatID}}">{{cate.CatName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
   <div class="field">
     <label class="label">Product name</label>
     <div class="control">
@@ -10,13 +29,16 @@
     <p *ngIf="!name.valid" class="help is-danger">Name is required</p>
   </div>
 
-  <div class="field">
-    <label class="label">Product ID</label>
-    <div class="control">
-      <input #id="ngModel" class="input" [(ngModel)]="product.ProID" name="model" required>
-    </div>
-    <p *ngIf="!id.valid" class="help is-danger">ID is required</p>
-  </div>
+  <!--<div class="field">-->
+  <!--<label class="label">Product parcel</label>-->
+  <!--<div class="control">-->
+  <!--<div *ngIf="parcelStream | async" class="select">-->
+  <!--<select name="ParID" [(ngModel)]="product.warehouses.ParID" required>-->
+  <!--<option *ngFor="let item of parcelStream | async" value="{{item.ParID}}">{{item.Brand + "-" + item.Color + "-" + item.Size}}</option>-->
+  <!--</select>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
 
   <!--<div class="field">-->
   <!--<label class="label">Product description</label>-->
@@ -34,7 +56,15 @@
   <!--</div>-->
 
   <div class="field">
-    <label class="label">Product price</label>
+    <label class="label">Product price in</label>
+    <div class="control">
+      <input #priceIn="ngModel" type="number" class="input" [(ngModel)]="product.PriceIn" name="PriceIn" required>
+    </div>
+    <p *ngIf="!priceIn.valid" class="help is-danger">PriceIn is required</p>
+  </div>
+
+  <div class="field">
+    <label class="label">Product price out</label>
     <div class="control">
       <input #price="ngModel" type="number" class="input" [(ngModel)]="product.PriceOut" name="PriceOut" required>
     </div>
@@ -45,17 +75,6 @@
     <label class="label">Product discount</label>
     <div class="control">
       <input #hiringprice="ngModel" type="number" class="input" [(ngModel)]="product.Discount" name="Discount">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Product category</label>
-    <div class="control">
-      <div *ngIf="cateStream | async" class="select">
-        <select name="CatID" [(ngModel)]="product.CatID" required>
-          <option *ngFor="let cate of cateStream | async" value="{{cate.CatID}}">{{cate.CatName}}</option>
-        </select>
-      </div>
     </div>
   </div>
 

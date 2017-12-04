@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductList} from "../../shared/models/product";
 import {Observable} from "rxjs/Observable";
 import {ProductService} from "../../shared/services/product.service";
+import {WarehouseList} from "../../shared/models/warehouse";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-product-index',
@@ -10,11 +12,14 @@ import {ProductService} from "../../shared/services/product.service";
 })
 export class ProductIndexComponent implements OnInit {
 
-  products: Observable<ProductList>;
+  warehouses: WarehouseList;
 
   constructor(private productService: ProductService) {
-    this.products = this.productService.getProductStream();
-    this.productService.reload();
+    this.productService.getWarehouse().subscribe((warehouses) => {
+      this.warehouses = warehouses;
+      this.warehouses.data = _.take(warehouses.data, 8);
+    });
+    // this.productService.reload();
   }
 
   ngOnInit() {

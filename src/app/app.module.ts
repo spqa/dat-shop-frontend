@@ -12,6 +12,7 @@ import {ProductService} from "./shared/services/product.service";
 import {CartService} from "./shared/services/cart.service";
 import {CartModule} from "./cart/cart.module";
 import {OrderService} from "./shared/services/order.service";
+import {ParcelService} from "./shared/services/parcel.service";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {OrderService} from "./shared/services/order.service";
     CategoryService,
     ProductService,
     CartService,
-    OrderService
+    OrderService,
+    ParcelService
   ],
   bootstrap: [AppComponent]
 })

@@ -9,6 +9,8 @@ import {ProductService} from "../../shared/services/product.service";
 import {ResultMessage} from "../../shared/models/result-message";
 import {ActivatedRoute, Router} from "@angular/router";
 import 'rxjs/add/operator/filter';
+import {ParcelService} from "../../shared/services/parcel.service";
+import {Parcel} from "../../shared/models/parcel";
 
 @Component({
   selector: 'app-admin-product-detail',
@@ -21,17 +23,22 @@ export class AdminProductDetailComponent implements OnInit {
   cateStream: Observable<Category[]>;
   adding = false;
   resultMessage: ResultMessage;
-
+  parcelStream: Observable<Parcel[]>;
   constructor(private uploadService: UploadService,
               private cateService: CategoryService,
               private productService: ProductService,
+              private parcelService: ParcelService,
               private router: Router,
               private route: ActivatedRoute) {
     this.cateStream = this.cateService.getCategoryStream();
     this.cateService.reload();
     this.route.data.subscribe((data) => this.adding = data.adding);
     this.route.paramMap.filter(() => !this.adding).switchMap((params) => this.productService.getProduct(params.get("id")))
-      .subscribe((product) => this.product = product);
+      .subscribe((product) => {
+        this.product = product;
+        console.log(product);
+      });
+    this.parcelStream = this.parcelService.get();
   }
 
   ngOnInit() {

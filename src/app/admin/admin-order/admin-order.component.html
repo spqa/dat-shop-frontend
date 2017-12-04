@@ -6,10 +6,10 @@
   <thead>
   <tr>
     <th>No</th>
-    <th>Customer</th>
-    <th>Staff</th>
+    <th>Customer name</th>
+    <th>Customer address</th>
+    <th>Customer phone</th>
     <th>Status</th>
-    <th>Customer Return</th>
     <th>Created at</th>
     <th>Action</th>
   </tr>
@@ -18,18 +18,18 @@
   <tbody *ngIf="orders">
   <tr *ngFor="let order of orders.data; let i = index">
     <td>{{i + 1}}</td>
-    <td>{{order.user.name}}</td>
-    <td>{{order.staff?.name}}</td>
-    <td>{{order.staff ? 'order' : 'reserve'}}</td>
-    <td>{{order.hiring_return? "returned" : 'not return'}}</td>
-    <td>{{order.created_at}}</td>
+    <td>{{order.customer?.CusName}}</td>
+    <td>{{order.customer?.CusAddress}}</td>
+    <td>{{order.customer?.CusPhone}}</td>
+    <td>{{order.Status}}</td>
+    <td>{{order.DateOut}}</td>
     <td>
-      <button (click)="receiveOrder(order.id)" *ngIf="!order.staff_id" class="button is-success">Receive Order</button>
-      <button *ngIf="order.staff_id && !order.hiring_return" class="button is-warning">Lost</button>
-      <button *ngIf="order.staff_id && !order.hiring_return" (click)="userReturn(order.id)" class="button is-warning">
-        Customer Return
-      </button>
-      <a [routerLink]="['/admin/order/'+ order.id + '/order-detail']" class="button is-info">Order detail</a>
+      <!--<button (click)="receiveOrder(order.id)" *ngIf="!order.staff_id" class="button is-success">Receive Order</button>-->
+      <!--<button *ngIf="order.staff_id && !order.hiring_return" class="button is-warning">Lost</button>-->
+      <!--<button *ngIf="order.staff_id && !order.hiring_return" (click)="userReturn(order.id)" class="button is-warning">-->
+      <!--Customer Return-->
+      <!--</button>-->
+      <a [routerLink]="['/admin/order/'+ order.OrdOutID + '/order-detail']" class="button is-info">Order detail</a>
     </td>
   </tr>
   </tbody>

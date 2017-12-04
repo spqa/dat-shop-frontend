@@ -1,4 +1,4 @@
-<nav class="navbar" [class.is-home]="!isAdmin" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark" [class.is-home]="!isAdmin" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" routerLink="/">
       Camera Shop
@@ -9,5 +9,15 @@
       <span class="tag is-dark"> {{total}}</span>
     </a>
 
+    <a *ngIf="!isAdmin" class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        Category
+      </a>
+      <div *ngIf="cateStream" class="navbar-dropdown is-boxed">
+        <a *ngFor="let cate of cateStream" class="navbar-item" [routerLink]="['/category', cate.CatID]">
+          {{cate.CatName}}
+        </a>
+      </div>
+    </a>
   </div>
 </nav>

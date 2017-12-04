@@ -8,6 +8,9 @@
       <tr>
         <th>Name</th>
         <th>Price</th>
+        <th>Brand</th>
+        <th>Color</th>
+        <th>Size</th>
         <th>Quantity</th>
       </tr>
       </thead>
@@ -16,18 +19,53 @@
       <tr *ngFor="let item of carts">
         <td>{{item.product.ProName}}</td>
         <td>{{item.product.PriceOut}}</td>
+        <td>{{item.parcel.Brand}}</td>
+        <td>{{item.parcel.Color}}</td>
+        <td>{{item.parcel.Size}}</td>
         <td>{{item.Quantity}}</td>
       </tr>
       </tbody>
     </table>
-    <button class="button" (click)="reserve()">Order</button>
 
+    <h3 class="title">Total price: {{totalPrice}}</h3>
   </div>
 
   <div class="container">
-    <form (submit)="onSubmit()">
+    <div class="columns">
+      <div class="column is-half-desktop">
+        <form (submit)="onSubmit()">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" #cusName="ngModel" [(ngModel)]="order.customer.CusName" type="text" name="CusName"
+                     required>
+              <p *ngIf="!cusName.valid" class="help is-danger">Name is required!</p>
+            </div>
+          </div>
 
-    </form>
+          <div class="field">
+            <label class="label">Address</label>
+            <div class="control">
+              <input class="input" #cusAdd="ngModel" [(ngModel)]="order.customer.CusAddress" type="text"
+                     name="CusAddress" required>
+              <p *ngIf="!cusAdd.valid" class="help is-danger">Address is required!</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" #cusPhone="ngModel" [(ngModel)]="order.customer.CusPhone" type="text" name="CusPhone"
+                     required>
+              <p *ngIf="!cusPhone.valid" class="help is-danger">Phone is required!</p>
+            </div>
+          </div>
+
+          <button class="button" type="submit">Order</button>
+        </form>
+      </div>
+    </div>
+
   </div>
 </div>
 
