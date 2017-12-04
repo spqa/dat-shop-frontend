@@ -1,0 +1,100 @@
+<h1 class="title">Product: {{product?.ProName}}</h1>
+<hr>
+<app-notification-error [result]="resultMessage"></app-notification-error>
+<form (submit)="submitProduct ()" #productForm="ngForm" enctype="multipart/form-data">
+  <div class="field">
+    <label class="label">Product name</label>
+    <div class="control">
+      <input #name="ngModel" class="input" [(ngModel)]="product.ProName" name="ProName" required>
+    </div>
+    <p *ngIf="!name.valid" class="help is-danger">Name is required</p>
+  </div>
+
+  <div class="field">
+    <label class="label">Product ID</label>
+    <div class="control">
+      <input #id="ngModel" class="input" [(ngModel)]="product.ProID" name="model" required>
+    </div>
+    <p *ngIf="!id.valid" class="help is-danger">ID is required</p>
+  </div>
+
+  <!--<div class="field">-->
+  <!--<label class="label">Product description</label>-->
+  <!--<div class="control">-->
+  <!--<textarea class="textarea" [(ngModel)]="product.description" name="description"></textarea>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="field">-->
+  <!--<label class="label">Product total</label>-->
+  <!--<div class="control">-->
+  <!--<input #total="ngModel" min="0" max="20" step="1" type="number" class="input" [(ngModel)]="product.total" name="total" required>-->
+  <!--</div>-->
+  <!--<p *ngIf="!total.valid" class="help is-danger">Total is required</p>-->
+  <!--</div>-->
+
+  <div class="field">
+    <label class="label">Product price</label>
+    <div class="control">
+      <input #price="ngModel" type="number" class="input" [(ngModel)]="product.PriceOut" name="PriceOut" required>
+    </div>
+    <p *ngIf="!price.valid" class="help is-danger">Price is required</p>
+  </div>
+
+  <div class="field">
+    <label class="label">Product discount</label>
+    <div class="control">
+      <input #hiringprice="ngModel" type="number" class="input" [(ngModel)]="product.Discount" name="Discount">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Product category</label>
+    <div class="control">
+      <div *ngIf="cateStream | async" class="select">
+        <select name="CatID" [(ngModel)]="product.CatID" required>
+          <option *ngFor="let cate of cateStream | async" value="{{cate.CatID}}">{{cate.CatName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="field">-->
+  <!--<label class="label">Product status</label>-->
+  <!--<div class="control">-->
+  <!--<div class="select">-->
+  <!--<select name="status" [(ngModel)]="product.status">-->
+  <!--<option value="old">Old</option>-->
+  <!--<option value="new">New</option>-->
+  <!--<option value="good">Good</option>-->
+  <!--</select>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div class="columns">
+    <div class="column">
+      <label class="label">Product image</label>
+      <div class="file">
+        <label class="file-label">
+          <input #image (change)="uploadFile(image.files[0])" class="file-input" type="file">
+          <span class="file-cta">
+      <span class="file-icon">
+        <i class="fa fa-upload"></i>
+      </span>
+      <span class="file-label">
+        Choose a file…
+      </span>
+    </span>
+        </label>
+      </div>
+    </div>
+    <div class="column">
+      <figure *ngIf="product.Image" class="image is-4by3">
+        <img [src]="product.Image">
+      </figure>
+    </div>
+  </div>
+
+  <button class="button" type="submit" [disabled]="!productForm.form.valid">Submit</button>
+</form>

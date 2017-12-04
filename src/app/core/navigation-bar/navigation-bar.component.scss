@@ -1,0 +1,18 @@
+.title-cart {
+  margin-right: 6px;
+}
+
+nav.is-home {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  z-index: 2;
+}
+
+nav.is-home a {
+  color: white;
+}
+
+nav a:hover {
+  background-color: transparent;
+}

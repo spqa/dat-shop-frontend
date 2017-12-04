@@ -1,0 +1,13 @@
+<nav class="navbar" [class.is-home]="!isAdmin" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      Camera Shop
+    </a>
+
+    <a *ngIf="!isAdmin" routerLink="/cart" class="navbar-item">
+      <span class="title-cart">Your cart</span>
+      <span class="tag is-dark"> {{total}}</span>
+    </a>
+
+  </div>
+</nav>

@@ -1,0 +1,39 @@
+<h2 class="title">Category Management</h2>
+<button class="button is-success" (click)="toggle()">Add new category</button>
+<app-notification-error [result]="resultMessage"></app-notification-error>
+<form *ngIf="addingCate" #cateForm="ngForm" (submit)="addCate()">
+  <div class="field">
+    <label class="label">ID</label>
+    <div class="control">
+      <input #id="ngModel" class="input" placeholder="enter category id" name="CatID" [(ngModel)]="newCategory.CatID"
+             required>
+      <p *ngIf="!id.valid" class="help is-danger">ID is required!</p>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input #name="ngModel" class="input" placeholder="enter new category name" name="name"
+             [(ngModel)]="newCategory.CatName" required>
+      <p *ngIf="!name.valid" class="help is-danger">Name is required!</p>
+    </div>
+  </div>
+  <button class="button" type="submit" [disabled]="!cateForm.form.valid">Submit</button>
+</form>
+<table class="table is-fullwidth is-hoverable">
+  <thead>
+  <th>No</th>
+  <th>Name</th>
+  <th>Action</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of categoryStream | async">
+    <td>{{item.CatID}}</td>
+    <td>{{item.CatName}}</td>
+    <td>
+      <a class="button is-info" [routerLink]="['/admin/category', item.CatID]">Edit</a>
+      <button class="button is-warning" (click)="destroy(item.CatID)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

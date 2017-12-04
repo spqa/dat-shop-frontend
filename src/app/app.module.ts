@@ -1,9 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {CoreModule} from "./core/core.module";
+import {LoginModule} from "./login/login.module";
+import {CategoryService} from "./shared/services/category.service";
+import {HttpClientModule} from "@angular/common/http";
+import {ProductService} from "./shared/services/product.service";
+import {CartService} from "./shared/services/cart.service";
+import {CartModule} from "./cart/cart.module";
+import {OrderService} from "./shared/services/order.service";
 
 
 @NgModule({
@@ -12,9 +20,18 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    CartModule,
+    AppRoutingModule,
+    LoginModule,
+    CoreModule,
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    ProductService,
+    CartService,
+    OrderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

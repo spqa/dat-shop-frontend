@@ -1,0 +1,57 @@
+<h1 class="title">Product Management</h1>
+<hr>
+<a routerLink="/admin/product/add" class="button">Add new product</a>
+<app-notification-error [result]="resultMessage"></app-notification-error>
+<table class="table is-fullwidth is-hoverable">
+  <thead>
+  <tr>
+    <th>Product ID</th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Discount</th>
+    <th>Category</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="products">
+  <tr *ngFor="let product of products.data">
+    <td>{{product.ProID}}</td>
+    <td>
+      <figure class="image is-4by3">
+        <img [src]="product.Image?product.Image:'http://via.placeholder.com/350x150'">
+      </figure>
+    </td>
+    <td>{{product.ProName}}</td>
+    <td>{{product.PriceOut}}</td>
+    <td>{{product.Discount}}</td>
+    <td>{{product.category.CatName}}</td>
+    <td>
+      <a class="button is-info" [routerLink]="['/admin/product',product.ProID]">Edit</a>
+      <a class="button is-danger" (click)="deleteProduct(product.ProID)">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="field has-addons">
+  <p class="control">
+    <a (click)="prevPage()" class="button">
+      <span>Prev</span>
+    </a>
+  </p>
+  <p class="control">
+    <a class="button">
+      <span>Current {{products?.current_page}}</span>
+    </a>
+  </p>
+  <p class="control">
+    <a (click)="nextPage()" class="button">
+      <span>Next</span>
+    </a>
+  </p>
+  <p class="control">
+    <a class="is-info button">
+      <span>{{products?.last_page}}</span>
+    </a>
+  </p>
+</div>

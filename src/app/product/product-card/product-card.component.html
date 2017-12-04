@@ -1,0 +1,37 @@
+<div class="card">
+  <a [routerLink]="['/product',product.ProID]">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img [src]="product.Image?product.Image:'https://bulma.io/images/placeholders/1280x960.png'"
+             alt="Placeholder image">
+      </figure>
+    </div>
+
+    <div class="card-content">
+      <div class="content">
+        <h2 class="title">{{product.ProName}}</h2>
+        <!--In stock: {{product.stock}}-->
+      </div>
+    </div>
+
+    <div *ngIf="product.PriceOut" class="hiring-price">
+      <span>{{product.PriceOut}}$</span>
+    </div>
+  </a>
+  <footer class="card-footer">
+    <a class="card-footer-item">
+      <span class="icon">
+        <i class="fa fa-shopping-cart"></i>
+      </span>Cart: {{cartQuantity}}</a>
+    <a (click)="add()" class="card-footer-item">
+      <span class="icon">
+        <i class="fa fa-plus"></i>
+      </span>
+    </a>
+    <a (click)="substract()" class="card-footer-item">
+      <span class="icon">
+        <i class="fa fa-minus"></i>
+      </span>
+    </a>
+  </footer>
+</div>

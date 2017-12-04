@@ -1,0 +1,47 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        <nav class="panel">
+          <p class="panel-heading">
+            Admin Menu
+          </p>
+
+          <a routerLink="/admin/category" class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-book"></i>
+          </span>
+            Category Management
+          </a>
+          <a routerLink="/admin/product" class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-book"></i>
+          </span>
+            Product Management
+          </a>
+          <a routerLink="/admin/order" class="panel-block">
+            <span class="panel-icon">
+             <i class="fa fa-book"></i>
+            </span>
+            Order Management
+          </a>
+          <a routerLink="/admin/customer" class="panel-block">
+            <span class="panel-icon">
+             <i class="fa fa-book"></i>
+            </span>
+            Customer Management
+          </a>
+          <a routerLink="/admin/account" class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-book"></i>
+          </span>
+            My Account Setting
+          </a>
+        </nav>
+      </div>
+      <div class="column is-9">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

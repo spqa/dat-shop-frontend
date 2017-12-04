@@ -1,0 +1,14 @@
+<h1 class="title">Category: {{category?.CatName}}</h1>
+
+<app-notification-error [result]="resultMessage"></app-notification-error>
+<form *ngIf="category" (submit)="onSubmit()" #cateForm="ngForm">
+  <div class="field">
+    <label class="label">Category name</label>
+    <div class="control">
+      <input #name="ngModel" type="text" class="input" [(ngModel)]="category.CatName" name="CatName" required>
+    </div>
+    <p [hidden]="!name.valid" class="help is-danger"></p>
+  </div>
+
+  <button class="button" [disabled]="!cateForm.form.valid">Update</button>
+</form>

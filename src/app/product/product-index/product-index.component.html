@@ -1,0 +1,24 @@
+<section class="hero is-fullheight ">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Camera Shop
+      </h1>
+      <h2 class="subtitle">
+        Hiring cameras and lens services
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Product List</h1>
+    <div *ngIf="products | async" class="columns is-multiline ">
+      <div *ngFor="let product of (products | async).data" class="column is-3-desktop is-6-tablet">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </div>
+
+  </div>
+</section>

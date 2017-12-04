@@ -1,0 +1,33 @@
+<div class="section">
+  <div class="container">
+    <h1 class="title">Cart item</h1>
+    <hr>
+    <app-notification-error [result]="resultMessage"></app-notification-error>
+    <table class="table is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+
+      <tbody *ngIf="carts ">
+      <tr *ngFor="let item of carts">
+        <td>{{item.product.ProName}}</td>
+        <td>{{item.product.PriceOut}}</td>
+        <td>{{item.Quantity}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <button class="button" (click)="reserve()">Order</button>
+
+  </div>
+
+  <div class="container">
+    <form (submit)="onSubmit()">
+
+    </form>
+  </div>
+</div>
+

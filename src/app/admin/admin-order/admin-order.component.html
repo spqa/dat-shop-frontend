@@ -1,0 +1,36 @@
+<h1 class="title">Order List</h1>
+
+<hr>
+<app-notification-error [result]="resultMessage"></app-notification-error>
+<table class="table is-fullwidth">
+  <thead>
+  <tr>
+    <th>No</th>
+    <th>Customer</th>
+    <th>Staff</th>
+    <th>Status</th>
+    <th>Customer Return</th>
+    <th>Created at</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody *ngIf="orders">
+  <tr *ngFor="let order of orders.data; let i = index">
+    <td>{{i + 1}}</td>
+    <td>{{order.user.name}}</td>
+    <td>{{order.staff?.name}}</td>
+    <td>{{order.staff ? 'order' : 'reserve'}}</td>
+    <td>{{order.hiring_return? "returned" : 'not return'}}</td>
+    <td>{{order.created_at}}</td>
+    <td>
+      <button (click)="receiveOrder(order.id)" *ngIf="!order.staff_id" class="button is-success">Receive Order</button>
+      <button *ngIf="order.staff_id && !order.hiring_return" class="button is-warning">Lost</button>
+      <button *ngIf="order.staff_id && !order.hiring_return" (click)="userReturn(order.id)" class="button is-warning">
+        Customer Return
+      </button>
+      <a [routerLink]="['/admin/order/'+ order.id + '/order-detail']" class="button is-info">Order detail</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
